@@ -62,7 +62,7 @@ class InferlessPythonModel:
         audio_base64 = base64.b64encode(buffer.read()).decode('utf-8')
         print(audio_base64[:150])
 
-        generateObject = ResponseObjects(generated_text=text,generated_audio=audio_base64)        
+        generateObject = ResponseObjects(generated_text=text[0],generated_audio=audio_base64)        
         return generateObject
     
     def get_query(self, system_prompt,  prompt, video_url=None, image_url=None, audio_url=None):

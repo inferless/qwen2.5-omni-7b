@@ -7,3 +7,5 @@ build:
     - "accelerate"
     - "qwen-omni-utils[decord]"
     - "torchvision"
+    - "inferless==0.2.13"
+    - "pydantic==2.10.2"
