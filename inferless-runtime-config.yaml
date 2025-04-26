@@ -1,0 +1,9 @@
+build:
+  cuda_version: "12.1.1"
+  system_packages:
+    - "ffmpeg"
+  python_packages:
+    - "git+https://github.com/huggingface/transformers.git"
+    - "accelerate"
+    - "qwen-omni-utils[decord]"
+    - "torchvision"
