@@ -15,7 +15,6 @@ class RequestObjects(BaseModel):
     video_url: Optional[str] = None
     image_url: Optional[str] = None
     audio_url: Optional[str] = None
-    audio_url: Optional[str] = None
 
 @inferless.response
 class ResponseObjects(BaseModel):
