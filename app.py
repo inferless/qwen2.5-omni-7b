@@ -78,3 +78,6 @@ class InferlessPythonModel:
                 "content": content_list,
             }
         ]
+
+    def finalize(self):
+        self.model = None
