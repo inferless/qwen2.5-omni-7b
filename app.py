@@ -12,9 +12,9 @@ from typing import Optional
 class RequestObjects(BaseModel):
     prompt: str = Field(default="Who are you?")
     system_prompt: str = Field(default="You are Qwen, a virtual human developed by the Qwen Team, Alibaba Group, capable of perceiving auditory and visual inputs, as well as generating text and speech.")
-    video_url: Optional[str] = None
-    image_url: Optional[str] = None
-    audio_url: Optional[str] = None
+    video_url: Optional[str] = "https://www.sample-videos.com/video321/mp4/240/big_buck_bunny_240p_1mb.mp4"
+    image_url: Optional[str] = "https://github.com/rbgo404/Files/raw/main/dog.jpg"
+    audio_url: Optional[str] = "https://github.com/rbgo404/Files/raw/main/driving_audio_1.wav"
 
 @inferless.response
 class ResponseObjects(BaseModel):
