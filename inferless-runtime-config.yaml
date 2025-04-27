@@ -3,9 +3,10 @@ build:
   system_packages:
     - "ffmpeg"
   python_packages:
-    - "git+https://github.com/huggingface/transformers.git"
-    - "accelerate"
-    - "qwen-omni-utils[decord]"
-    - "torchvision"
+    - "accelerate==1.6.0"
+    - "decord==0.6.0"
+    - "qwen-omni-utils==0.0.4"
+    - "torchvision==0.22.0"
     - "inferless==0.2.13"
     - "pydantic==2.10.2"
+    - "git+https://github.com/huggingface/transformers.git@397a5ede33863d6f7137c771a68d40036cac0396"
