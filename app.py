@@ -10,9 +10,8 @@ from typing import Optional
 
 @inferless.request
 class RequestObjects(BaseModel):
-    prompt: str = Field(default="image")
-    system_prompt: str = Field(default="image")
-    return_audio: bool = Field(default=True)
+    prompt: str = Field(default="Who are you?")
+    system_prompt: str = Field(default="You are Qwen, a virtual human developed by the Qwen Team, Alibaba Group, capable of perceiving auditory and visual inputs, as well as generating text and speech.")
     video_url: Optional[str] = None
     image_url: Optional[str] = None
     audio_url: Optional[str] = None
@@ -32,23 +31,14 @@ class InferlessPythonModel:
         
 
     def infer(self, request: RequestObjects) -> ResponseObjects:
-        # prompt = inputs.get("prompt", "What are the elements can you see and hear in these medias?")
-        # system_prompt = inputs.get("prompt", "You are Qwen, a virtual human developed by the Qwen Team, Alibaba Group, capable of perceiving auditory and visual inputs, as well as generating text and speech.")
-        # video_url = inputs.get("video_url",None)
-        # image_url = inputs.get("image_url",None)
-        # audio_url=inputs.get("audio_url",None)
-        
         conversation = self.get_query(request.system_prompt,  request.prompt, request.video_url, request.image_url, request.audio_url)
-
         text = self.processor.apply_chat_template(conversation, add_generation_prompt=True, tokenize=False)
         audios, images, videos = process_mm_info(conversation, use_audio_in_video=True)
         inputs = self.processor(text=text, audio=audios, images=images, videos=videos, return_tensors="pt", padding=True, use_audio_in_video=True)
         inputs = inputs.to(self.model.device).to(self.model.dtype)
 
-        # Inference: Generation of the output text and audio
         text_ids, audio = self.model.generate(**inputs, use_audio_in_video=True)
         text = self.processor.batch_decode(text_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
-        print(text)
 
         buffer = io.BytesIO()
         sf.write(
@@ -60,13 +50,8 @@ class InferlessPythonModel:
         
         buffer.seek(0)
         audio_base64 = base64.b64encode(buffer.read()).decode('utf-8')
-        print(audio_base64[:150])
 
-        if request.return_audio:
-            generateObject = ResponseObjects(generated_text=text[0],generated_audio=audio_base64)
-        else:
-            generateObject = ResponseObjects(generated_text=text[0])
-
+        generateObject = ResponseObjects(generated_text=text[0],generated_audio=audio_base64)
         return generateObject
     
     def get_query(self, system_prompt,  prompt, video_url=None, image_url=None, audio_url=None):
