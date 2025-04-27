@@ -62,7 +62,7 @@ class InferlessPythonModel:
         audio_base64 = base64.b64encode(buffer.read()).decode('utf-8')
         print(audio_base64[:150])
 
-        if return_audio:
+        if request.return_audio:
             generateObject = ResponseObjects(generated_text=text[0],generated_audio=audio_base64)
         else:
             generateObject = ResponseObjects(generated_text=text[0])
