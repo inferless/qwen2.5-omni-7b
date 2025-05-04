@@ -2,7 +2,7 @@
 [Qwen2.5-Omni-7B](https://huggingface.co/Qwen/Qwen2.5-Omni-7B) is a cutting-edge “any-to-any” multimodal foundation model from Alibaba Cloud’s Qwen team. Tuned for real-time instruction-following, it fuses strong language reasoning with native vision, audio, and video perception—then answers back in fluent text or low-latency speech via its Thinker-Talker streaming architecture. This 7B checkpoint is built to serve as a versatile on-device AI companion.
 
 ## TL;DR:
-- Deployment of Phi-4-Multimodal-Instruct model using [transformers](https://github.com/huggingface/transformers).
+- Deployment of Qwen2.5-Omni-7B model using [transformers](https://github.com/huggingface/transformers).
 - Dependencies defined in `inferless-runtime-config.yaml`.
 - GitHub/GitLab template creation with `app.py`, `inferless-runtime-config.yaml` and `inferless.yaml`.
 - Model class in `app.py` with `initialize`, `infer`, and `finalize` functions.
